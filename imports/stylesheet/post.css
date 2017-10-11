@@ -2,7 +2,8 @@
 
 
 
-body {
+#postdiv {
+  height:100vh;
   font-family: 'Lato', sans-serif;
   /*background: #e2dedb;
   */
@@ -10,10 +11,15 @@ body {
   color: #b3aca7;
 }
 
+#postdivSub{
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
 header {
   position: relative;
-  margin: 100px 0 0 0;
-  font-size: 2.3em;
+  margin: 0 0 0 0;
+  font-size: 4.3em;
   text-align: center;
   letter-spacing: 7px;
   color:   #d8d8d8;

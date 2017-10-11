@@ -9,7 +9,7 @@ export default class Homepage extends Component{
 
     let goToPost = () =>{
       console.log('goint to post');
-      browserHistory.push("/");
+      browserHistory.push("/post");
     }
     return(
       <div>
