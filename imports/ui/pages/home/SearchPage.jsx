@@ -2,21 +2,29 @@ import React, {Component} from 'react';
 
 
 export default class SearchPage extends Component{
+
+  submit = () => {
+    let data = {
+      positon: this.refs.position.value,
+      city: this.refs.city.value
+    }
+    this.clearInput();
+    console.log("search data", data);
+  }
+
+  clearInput = () => {
+    this.refs.position.value = "";
+    this.refs.city.value = "";
+  }
   render(){
-    // let returnedJobs = this.props.jobs;
-    if(this.props.loading){
-      return(<div>loading</div>)
-    }
-    else{
-      // let {jobs} = this.props
-      // let names = jobs.map(function(job,i){
-      //   return <h2 key={i} >{job.name}</h2>
-      // })
-      return(
-        <div>
-          <h1> Search Page</h1>
-          {/* {names} */}
-        </div>)
-    }
+    return(
+      <div className="center-block text-center" style={{marginTop:"20%"}}>
+        <div className="searchform cf">
+          <input ref="position" type="text" placeholder="position?" />
+          <input ref="city" type="text" placeholder="city?" />
+          <button onClick={this.submit} id="search" >Search</button>
+        </div>
+      </div>
+    )
   }
 }
