@@ -4,7 +4,7 @@ export default class Homepage extends Component{
   render(){
     let goToSearch = () =>{
       console.log('goint to search');
-      browserHistory.push("/");
+      browserHistory.push("/search");
     }
 
     let goToPost = () =>{
