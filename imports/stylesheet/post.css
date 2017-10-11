@@ -16,9 +16,9 @@
     transform: translate(-50%, -50%);
     position: absolute;
 }
-header {
+#PostHeader {
   position: relative;
-  margin: 0 0 0 0;
+  padding-top: 40px;
   font-size: 4.3em;
   text-align: center;
   letter-spacing: 7px;
@@ -90,7 +90,7 @@ textarea:hover {
 
 #submit {
   width: 470px;
-
+  height: 50px;
   padding: 0;
   margin: -5px 0px 0px 0px;
 

@@ -12,29 +12,19 @@ export default class Homepage extends Component{
       browserHistory.push("/post");
     }
     return(
-      <div>
+      <div style={{height:"100%"}}>
         <div className='split-pane col-xs-12 col-sm-6 uiux-side'>
           <div className="hover-cursor">
-            {/* <img src='https://bit.ly/BCR-design' /> */}
-              <div onClick={goToSearch} className='text-content'>
-                <div className='big'>Search Job?</div>
-              </div>
-
-            {/* <button>
-              SHOW ME THE DESIGN
-            </button> */}
+            <div onClick={goToSearch} className='text-content'>
+              <div className='big'>Search Job?</div>
+            </div>
           </div>
         </div>
         <div className='split-pane col-xs-12 col-sm-6 frontend-side'>
           <div className="hover-cursor">
-            {/* <img src='https://bit.ly/bcr-dev' /> */}
-
-              <div onClick={goToPost} className='text-content'>
-                <div className='big'>Post Job?</div>
-              </div>
-            {/* <a className='button'>
-              SHOW ME THE CODE
-            </a> */}
+            <div onClick={goToPost} className='text-content'>
+              <div className='big'>Post Job?</div>
+            </div>
           </div>
         </div>
         <div id='split-pane-or'>
