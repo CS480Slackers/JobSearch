@@ -4,7 +4,7 @@ export default class JobPostPage extends Component{
   render(){
     return(
       <div id="postdiv">
-        <div id = "PostHeader">Post a Job</div>
+        <div id = "PostHeader">Post a Job sdfsadfsdfasf</div>
         <div id="form" className="topBefore">
             <input id="name" type="text" placeholder="COMPANY NAME"/>
             <input id="location" type="text" placeholder="LOCATION"/>
