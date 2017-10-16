@@ -24,7 +24,6 @@ export default class JobPostPage extends Component{
             <textarea ref={(jobDescription) => {this.jobDescription = jobDescription}} id="description" type="text" placeholder="DESCRIPTION">
             </textarea>
             <button onClick={this.submitJob} id="submit" type="submit">SUBMIT NOW</button>
-
         </div>
       </div>
 

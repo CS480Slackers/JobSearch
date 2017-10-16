@@ -16,7 +16,6 @@ render() {
           title={'The Japanese Garden.'}
           name={'Japanese Garden'}
           position= {{lat:34.0599, lng:-117.8204}} />
-
       </Map>
     );
   }
