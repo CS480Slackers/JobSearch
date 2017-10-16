@@ -34,7 +34,7 @@ a,a:visited {
   border: 1px solid #d3d3d3;
   padding: 2px 5px;
 	margin: auto;
-  width:max-content;
+  width:fit-content;
   box-shadow:0 4px 9px rgba(0,0,0,.37);
   -moz-box-shadow:0 4px 9px rgba(0,0,0,.37);
   -webkit-box-shadow:0 4px 9px rgba(0,0,0,.37);
