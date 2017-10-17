@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link, browserHistory} from 'react-router';
 
-
 export default class JobPostPage extends Component{
   submitJob = () => {
     let job = {
@@ -10,9 +9,17 @@ export default class JobPostPage extends Component{
       position: this.position.value,
       jobDescription: this.jobDescription.value
     }
-    Meteor.call("jobInsert", job);
-    console.log("Job Posting", job);
+    Meteor.call("jobInsert", job, function(error,result){
+      if(result){
+        let jobId = result;
+        console.log("Job ID", jobId);
+        console.log("Job Posting", job);
+        browserHistory.push("/submission/"+jobId);
+      }
+    });
+
   }
+
   render(){
     return(
       <div id="postdiv">
