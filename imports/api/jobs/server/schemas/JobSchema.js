@@ -9,12 +9,15 @@ import SimpleSchema from 'simpl-schema';
 export const JobSchema = new SimpleSchema({
   company: {
     type: String,
+    min:1 //cannot be blank
   },
   position: {
     type: String,
+    min:2 //Can't think of a job position shorter than 2 letters. "IT" is shortest
   }
   location: {
     type: String,
+    min:1 //cannot be blank
   }
   description:{
     type: String,
