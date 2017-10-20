@@ -10,7 +10,7 @@ export default class SearchPage extends Component{
     this.state = {
       address: '',
       lat:0,
-      lng:0
+      lng:0,
     }
     this.onChange = (address) => this.setState({ address })
 
@@ -66,7 +66,7 @@ export default class SearchPage extends Component{
           <button onClick={this.handleFormSubmit} id="search" >Search</button>
         </div>
         {/* <GoogleMap2 lat={this.state.lat} lng={this.state.lng} /> */}
-        <GoogleMapsPage lat={this.state.lat} lng={this.state.lng}/>
+        <GoogleMapsPage name={"current location"} lat={this.state.lat} lng={this.state.lng}/>
       </div>
     )
   }
