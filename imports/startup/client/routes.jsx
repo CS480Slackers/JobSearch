@@ -13,8 +13,8 @@ export default () =>(
     <Route path="/" component={Homepage} />
     <Route path="/search" component={SearchPage} />
     {/* <Route path="/map" component={GoogleMapsPage} /> */}
-    <Route path="/post" component={JobPostPage} />
+    {/*<Route path="/post" component={JobPostPage} />*/}
     <Route path="/map" component={GoogleMapsPage} />
-    <Route path="/submission/:jobId" component={JobSubmittedPage} />
+    {/*<Route path="/submission/:jobId" component={JobSubmittedPage} />*/}
   </Router>
 )
