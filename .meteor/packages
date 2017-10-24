@@ -22,5 +22,3 @@ insecure@1.0.7                # Allow all DB writes from clients (for prototypin
 react-meteor-data
 twbs:bootstrap
 aldeed:collection2-core@2.0.0
-practicalmeteor:mocha
-practicalmeteor:chai
