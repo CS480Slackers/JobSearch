@@ -24,3 +24,4 @@ twbs:bootstrap
 aldeed:collection2-core@2.0.0
 practicalmeteor:mocha
 practicalmeteor:chai
+session
