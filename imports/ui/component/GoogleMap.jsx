@@ -9,6 +9,7 @@ export class GoogleMapsPage extends Component {
     activeMarker: {},
     selectedPlace: {},
   }
+}
 render() {
     let {lat, lng} = this.props;
     const style = {
