@@ -9,8 +9,8 @@ export default class SearchPage extends Component{
     super(props)
     this.state = {
       address: '',
-      lat:0,
-      lng:0
+      lat:34.0586057,
+      lng:-117.82518999999999
     }
     this.onChange = (address) => this.setState({ address })
 
