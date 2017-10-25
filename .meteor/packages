@@ -22,3 +22,6 @@ insecure@1.0.7                # Allow all DB writes from clients (for prototypin
 react-meteor-data
 twbs:bootstrap
 jagi:astronomy
+practicalmeteor:mocha
+practicalmeteor:chai
+session
