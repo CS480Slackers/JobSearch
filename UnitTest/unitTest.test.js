@@ -2,7 +2,7 @@ import {assert} from 'chai';
 import { chai } from 'meteor/practicalmeteor:chai';
 
 
-export default function getLatLng(){
+getLatLng = () =>{
   let coordinate = {
     lat: 0,
     lng: 0
@@ -10,11 +10,13 @@ export default function getLatLng(){
   return coordinate;
 }
 
-describe('testing out foo', function () {
+describe('testing out coordinates', function () {
   it('assert equals test', function () {
     let coordinate = {
       lat: 0,
       lng: 0
     }
-    assert.equal(getLatLng(), coordinate);
+    assert.equal(getLatLng().lat, coordinate.lat);
+    assert.equal(getLatLng().lng, coordinate.lng);
   });
+});
