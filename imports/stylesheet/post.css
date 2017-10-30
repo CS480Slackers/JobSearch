@@ -43,8 +43,13 @@
   width: 157px;
 }
 #zip{
-
   width: 156px;
+}
+#latitiude{
+  width: 235px;
+}
+#longitude{
+  width: 235px;
 }
 input {
   font-family: 'Lato', sans-serif;
