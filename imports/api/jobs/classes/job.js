@@ -27,13 +27,20 @@ export const Job = Class.create({
       }]
     },
 
-    location: {
+    latitiude: {
+      type: String
+    },
+
+    longitude: {
+      type: String
+    },
+    /*location: {
       type: String,
       validators: [{
         type: 'minLength',
         param: 1 //cannot be empty
       }]
-    },
+    },*/
 
     //Eventually I want us to use location2 in place of location
     //Stores an address object that would be initialized based on user input
