@@ -25,12 +25,12 @@ export const Address = Class.create({
 
     zip: {
       type: String,
-      optional: true
+      default: "undefined"
     },
 
     streetAddress: {
       type: String,
-      optional: true //for now streetAddress will be optional
+      default: "undefined"
     }
   }
 });

@@ -34,13 +34,11 @@ export const Job = Class.create({
     longitude: {
       type: String
     },
-    /*location: {
-      type: String,
-      validators: [{
-        type: 'minLength',
-        param: 1 //cannot be empty
-      }]
-    },*/
+
+    //location will store our GeoJSON object
+    location: {
+      type: Object
+    },
 
     //Eventually I want us to use location2 in place of location
     //Stores an address object that would be initialized based on user input

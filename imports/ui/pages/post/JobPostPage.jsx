@@ -13,6 +13,8 @@ export default class JobPostPage extends Component{
     job.position = this.position.value;
     job.description = this.jobDescription.value;
 
+
+
     Meteor.call("jobInsert", job, function(error,result){
       if(result){
         let jobId = result;
@@ -32,7 +34,7 @@ export default class JobPostPage extends Component{
         <div id="form" className="topBefore">
             <input ref={(name) => { this.name = name }} id="name" type="text" placeholder="COMPANY NAME"/>
             <input ref={(position) => {this.position = position}} id="position" type="text" placeholder="POSITION"/>
-            {/*}<input ref={(location) => {this.location = location}} id="location" type="text" placeholder="LOCATION"/>*/}
+            {/*}<input ref={(location) => {this.location = location}} id="location" type="text" placeholder="LOCATION"/>}*/
             <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LATITUDE"/>
             <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONGITUDE"/>
             <input id="address" type="text" placeholder="ADDRESS"/>
