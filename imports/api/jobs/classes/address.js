@@ -7,6 +7,7 @@ export const Address = Class.create({
   fields: { //ONLY ACCOUNTING FOR JOBS IN THE UNITED STATES FOR NOW
     city: {
       type: String,
+      default: "undefined",
       validators: [{
         type: 'minLength',
         param: 2 //Name of shortest city in the US is 2 letters
@@ -15,6 +16,7 @@ export const Address = Class.create({
 
     state: {
       type: String,
+      default: "undefined",
       validators: [{
         type: 'minLength',
         param: 4 //Shortest state name is 4 letters.
