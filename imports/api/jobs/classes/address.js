@@ -19,7 +19,7 @@ export const Address = Class.create({
       default: "undefined",
       validators: [{
         type: 'minLength',
-        param: 4 //Shortest state name is 4 letters.
+        param: 2 //State abbreviation at least 2 letters
       }]
     },
 
@@ -29,6 +29,11 @@ export const Address = Class.create({
     },
 
     streetAddress: {
+      type: String,
+      default: "undefined"
+    },
+
+    formattedAddress: {
       type: String,
       default: "undefined"
     }
