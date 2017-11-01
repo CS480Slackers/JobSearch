@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, browserHistory} from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { Class } from 'meteor/jagi:astronomy';
 import { Job } from '/imports/api/jobs/classes/job.js';
 import { Address } from '/imports/api/jobs/classes/address.js';
@@ -13,6 +13,8 @@ export default class JobPostPage extends Component{
     address.zip = this.zip_ref.value;
     address.state = this.state_ref.value;
     address.streetAddress = this.addr.value;
+    address.formattedAddress = address.streetAddress + ", " + address.city + ", "
+                                + address.state + ", " + address.zip + ", USA";
     job.location2 = address;
 
     job.company = this.name.value;
@@ -21,7 +23,8 @@ export default class JobPostPage extends Component{
     job.position = this.position.value;
     job.description = this.jobDescription.value;
 
-    console.log("before insert job =", job);
+    //console.log("Prior to insert", job);
+
     Meteor.call("jobInsert", job, function(error,result){
       if(result){
         let jobId = result;
@@ -57,7 +60,6 @@ export default class JobPostPage extends Component{
             <button onClick={this.submitJob} id="submit" type="submit">SUBMIT NOW</button>
         </div>
       </div>
-
     )
   }
 }
