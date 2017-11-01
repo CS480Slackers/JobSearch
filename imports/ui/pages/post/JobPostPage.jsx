@@ -2,10 +2,18 @@ import React, {Component} from 'react';
 import {Link, browserHistory} from 'react-router';
 import { Class } from 'meteor/jagi:astronomy';
 import { Job } from '/imports/api/jobs/classes/job.js';
+import { Address } from '/imports/api/jobs/classes/address.js';
 
 export default class JobPostPage extends Component{
   submitJob = () => {
     var job = new Job();
+    var address = new Address();
+
+    address.city = this.city_ref.value;
+    address.zip = this.zip_ref.value;
+    address.state = this.state_ref.value;
+    address.streetAddress = this.addr.value;
+    job.location2 = address;
 
     job.company = this.name.value;
     job.latitiude = this.latitiude.value;
@@ -13,8 +21,7 @@ export default class JobPostPage extends Component{
     job.position = this.position.value;
     job.description = this.jobDescription.value;
 
-
-
+    console.log("before insert job =", job);
     Meteor.call("jobInsert", job, function(error,result){
       if(result){
         let jobId = result;
@@ -34,15 +41,15 @@ export default class JobPostPage extends Component{
         <div id="form" className="topBefore">
             <input ref={(name) => { this.name = name }} id="name" type="text" placeholder="COMPANY NAME"/>
             <input ref={(position) => {this.position = position}} id="position" type="text" placeholder="POSITION"/>
-            {/*}<input ref={(location) => {this.location = location}} id="location" type="text" placeholder="LOCATION"/>}*/
+            {/*}<input ref={(location) => {this.location = location}} id="location" type="text" placeholder="LOCATION"/>}*/}
             <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LATITUDE"/>
             <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONGITUDE"/>
-            <input id="address" type="text" placeholder="ADDRESS"/>
+            <input ref={(addr) => {this.addr = addr}} id="address" type="text" placeholder="ADDRESS"/>
 
             <div>
-              <input id="city" type="text" placeholder="CITY"/>
-              <input id="state" type="text" placeholder="STATE"/>
-              <input id="zip" type="text" placeholder="ZIP"/>
+              <input ref={(city_ref) => {this.city_ref = city_ref}} id="city" type="text" placeholder="CITY"/>
+              <input ref={(state_ref) => {this.state_ref = state_ref}} id="state" type="text" placeholder="STATE"/>
+              <input ref={(zip_ref) => {this.zip_ref = zip_ref}} id="zip" type="text" placeholder="ZIP"/>
             </div>
 
             <textarea ref={(jobDescription) => {this.jobDescription = jobDescription}} id="description" type="text" placeholder="DESCRIPTION">

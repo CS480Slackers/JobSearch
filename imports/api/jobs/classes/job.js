@@ -37,7 +37,8 @@ export const Job = Class.create({
 
     //location will store our GeoJSON object
     location: {
-      type: Object
+      type: Object,
+      optional: true
     },
 
     //Eventually I want us to use location2 in place of location
