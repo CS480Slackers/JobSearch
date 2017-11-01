@@ -42,6 +42,13 @@ export default class SearchPage extends Component{
     geocodeByAddress(data.city)
       .then(results => getLatLng(results[0]))
       .then(latLng => this.setLocation(latLng))
+      // find nearsest will pass lat and lng of input location, and the max distance,
+      // for testing purpose, 5000 is to test for 5 miles.
+      .then(Meteor.call("findNearest", this.state.lat, this.state.lng, 5000, function(error, result){
+        if(result){
+          console.log('results', result);
+        }
+      }))
       .catch(error => console.error('Error', error))
     this.clearInput();
     console.log("search data", this.state.lat," ", this.state.lng);

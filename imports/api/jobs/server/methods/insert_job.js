@@ -5,7 +5,11 @@ import { Jobs } from '/imports/api/jobs/jobs.js';
 import { Job } from '/imports/api/jobs/classes/job.js';
 
 Meteor.methods({
-  jobInsert:function(job){
+  jobInsert:function(job, latLng){
+    job.location = {
+      type:"Point",
+      coordinates:[latLng.lng, latLng.lat]
+    }
     var tempId = job.save();
     console.log('id', tempId);
     console.log("Job Posting", job);
