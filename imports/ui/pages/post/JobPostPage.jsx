@@ -3,7 +3,6 @@ import { Link, browserHistory } from 'react-router';
 import { Class } from 'meteor/jagi:astronomy';
 import { Job } from '/imports/api/jobs/classes/job.js';
 import { Address } from '/imports/api/jobs/classes/address.js';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 export default class JobPostPage extends Component{
   submitJob = () => {
@@ -17,10 +16,6 @@ export default class JobPostPage extends Component{
     address.formattedAddress = address.streetAddress + ", " + address.city + ", "
                                 + address.state + ", " + address.zip + ", USA";
     job.location2 = address;
-
-    geocodeByAddress('Los Angeles, CA')
-      .then(results => console.log(results))
-      .catch(error => console.error(error))
 
     job.company = this.name.value;
     job.latitiude = this.latitiude.value;
