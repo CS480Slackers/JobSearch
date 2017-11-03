@@ -8,6 +8,14 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
+        environment:
+            # lang settings required for Meteor's Mongo
+            LANG: C.UTF-8
+            LANGUAGE: C.UTF-8
+            LC_ALL: C.UTF-8
+            LC_NUMERIC: en_US.UTF-8
+            METEOR_BIN_TMP_DIR: /home/circleci/build-temp/
+            METEOR_BIN_TMP_FILE: meteor-bin-temp
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -26,12 +34,16 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install
+      - run: meteor || curl https://install.meteor.com | /bin/sh
+      # - run: mup || sudo npm install -g mup
+      - run: meteor npm install --save
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+
       # run tests!
-      - run: yarn test
+      - run: meteor test --once --driver-package meteortesting:mocha
+      # - run: mup setup
+      # - run: mup deploy
