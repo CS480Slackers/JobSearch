@@ -23,5 +23,6 @@ react-meteor-data
 twbs:bootstrap
 jagi:astronomy
 practicalmeteor:mocha
+meteortesting:mocha
 practicalmeteor:chai
 session
