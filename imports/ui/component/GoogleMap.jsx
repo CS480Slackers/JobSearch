@@ -59,12 +59,12 @@ render() {
           onClick={this.onMarkerClick}
           name={'Current Location'}
           position= {{lat:lat, lng:lng}} />
-          <Marker
+          {/* <Marker
             title={'Japanese Garden'}
             onClick={this.onMarkerClick}
             name={'Japanese Garden'}
             jobName={"Landscape Engineer"}
-            position= {{lat:34.0599, lng:-117.8204}} />
+            position= {{lat:34.0599, lng:-117.8204}} /> */}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
