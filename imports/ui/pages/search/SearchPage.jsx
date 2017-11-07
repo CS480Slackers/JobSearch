@@ -29,7 +29,7 @@ export default class SearchPage extends Component{
      location((err, loc) => {
          if (err){
            console.error(err)
-           this.setState{loading:false}
+           this.setState({loading:false});
          }
          else {
            this.setState({lat:loc.latitude, lng:loc.longitude, loading: false})
