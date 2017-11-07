@@ -6,6 +6,7 @@ import { Address } from '/imports/api/jobs/classes/address.js';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
+
 class JobPostPage extends Component{
   submitJob = () => {
     var job = new Job();
