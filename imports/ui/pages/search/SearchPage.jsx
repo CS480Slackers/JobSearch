@@ -27,7 +27,10 @@ export default class SearchPage extends Component{
    componentWillMount(){
     //  Set initial location as the user's current location
      location((err, loc) => {
-         if (err) console.error(err)
+         if (err){
+           console.error(err)
+           this.setState({loading:false});
+         }
          else {
            this.setState({lat:loc.latitude, lng:loc.longitude, loading: false})
            console.log('state', this.state);
