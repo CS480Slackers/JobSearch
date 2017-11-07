@@ -38,11 +38,11 @@ export default class SearchPage extends Component{
 
   setLocation(latLng){
     this.setState({lat:latLng.lat, lng:latLng.lng});
-    let self = this;
     this.findNearJobLocations();
   }
 
   findNearJobLocations(){
+    let self = this;
     Meteor.call("findNearest", this.state.lat, this.state.lng, 5000, function(error, result){
       if(result){
         self.setState({returnedLocations: result});
@@ -76,6 +76,8 @@ export default class SearchPage extends Component{
       onChange: this.onChange,
     }
 
+
+    console.log('returned locations', this.state.returnedLocations);
     return(
       <div className="center-block text-center" style={{marginTop:"20%"}}>
         <div className="searchform cf">

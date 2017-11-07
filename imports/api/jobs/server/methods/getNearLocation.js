@@ -21,6 +21,5 @@ Meteor.methods({
     let result = Jobs.find(query, { limit: 20 }).fetch();
     console.warn('result', result);
     return result;
-    return 'success';
   }
 });
