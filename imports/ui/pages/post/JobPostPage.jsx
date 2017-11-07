@@ -3,8 +3,11 @@ import { Link, browserHistory } from 'react-router';
 import { Class } from 'meteor/jagi:astronomy';
 import { Job } from '/imports/api/jobs/classes/job.js';
 import { Address } from '/imports/api/jobs/classes/address.js';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-export default class JobPostPage extends Component{
+
+class JobPostPage extends Component{
   submitJob = () => {
     var job = new Job();
     var address = new Address();
@@ -16,30 +19,29 @@ export default class JobPostPage extends Component{
     address.formattedAddress = address.streetAddress + ", " + address.city + ", "
                                 + address.state + ", " + address.zip + ", USA";
     job.location2 = address;
-
     job.company = this.name.value;
     job.latitiude = this.latitiude.value;
     job.longitude = this.longitude.value;
     job.position = this.position.value;
     job.description = this.jobDescription.value;
-
-    //console.log("Prior to insert", job);
-
-    Meteor.call("jobInsert", job, function(error,result){
-      if(result){
-        let jobId = result;
-        console.log("Job ID", jobId);
-        browserHistory.push("/submission/"+jobId);
-      }else {
-        console.log("failed insert");
-      }
-    });
-
+    geocodeByAddress(address.streetAddress+" "+address.city+" "+address.state)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => Meteor.call("jobInsert", job, latLng, function(error,result){
+        if(result){
+          let jobId = result;
+          console.log("Job ID", jobId);
+          browserHistory.push("/submission/"+jobId);
+        }else {
+          console.log("failed insert");
+        }
+      }))
+      .catch(error => console.error(error))
   }
 
   render(){
     return(
       <div id="postdiv">
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo&libraries=places"></script>
         <div id = "PostHeader">Post a Job</div>
         <div id="form" className="topBefore">
             <input ref={(name) => { this.name = name }} id="name" type="text" placeholder="COMPANY NAME"/>
@@ -63,3 +65,7 @@ export default class JobPostPage extends Component{
     )
   }
 }
+
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
+})(JobPostPage)

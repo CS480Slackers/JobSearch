@@ -9,18 +9,27 @@ export default class SearchPage extends Component{
     super(props)
     this.state = {
       address: '',
-      lat:34.0586057,
-      lng:-117.82518999999999
+      loading:true,
+      lat:0,
+      lng:0,
+      returnedLocations:[]
     }
+
+    this.setLocation = this.setLocation.bind(this);
+    this.findNearJobLocations = this.findNearJobLocations.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.clearInput = this.clearInput.bind(this);
+
     this.onChange = (address) => this.setState({ address })
 
   }
 
    componentWillMount(){
+    //  Set initial location as the user's current location
      location((err, loc) => {
          if (err) console.error(err)
          else {
-           this.setState({lat:loc.latitude, lng:loc.longitude})
+           this.setState({lat:loc.latitude, lng:loc.longitude, loading: false})
            console.log('state', this.state);
            console.log('loc', loc);
          }
@@ -28,8 +37,17 @@ export default class SearchPage extends Component{
    }
 
   setLocation(latLng){
-    console.log('setLocation', latLng);
     this.setState({lat:latLng.lat, lng:latLng.lng});
+    this.findNearJobLocations();
+  }
+
+  findNearJobLocations(){
+    let self = this;
+    Meteor.call("findNearest", this.state.lat, this.state.lng, 5000, function(error, result){
+      if(result){
+        self.setState({returnedLocations: result});
+      }
+    });
   }
 
   handleFormSubmit = (event) => {
@@ -44,7 +62,6 @@ export default class SearchPage extends Component{
       .then(latLng => this.setLocation(latLng))
       .catch(error => console.error('Error', error))
     this.clearInput();
-    console.log("search data", this.state.lat," ", this.state.lng);
   }
 
 
@@ -58,6 +75,9 @@ export default class SearchPage extends Component{
       value: this.state.address,
       onChange: this.onChange,
     }
+
+
+    console.log('returned locations', this.state.returnedLocations);
     return(
       <div className="center-block text-center" style={{marginTop:"20%"}}>
         <div className="searchform cf">
@@ -65,8 +85,7 @@ export default class SearchPage extends Component{
           <input ref="city" type="text" placeholder="city?" />
           <button onClick={this.handleFormSubmit} id="search" >Search</button>
         </div>
-        {/* <GoogleMap2 lat={this.state.lat} lng={this.state.lng} /> */}
-        <GoogleMapsPage lat={this.state.lat} lng={this.state.lng}/>
+        {this.state.loading ? null : <GoogleMapsPage lat={this.state.lat} lng={this.state.lng}/>}
       </div>
     )
   }
