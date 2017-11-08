@@ -47,8 +47,8 @@ class JobPostPage extends Component{
             <input ref={(name) => { this.name = name }} id="name" type="text" placeholder="COMPANY NAME"/>
             <input ref={(position) => {this.position = position}} id="position" type="text" placeholder="POSITION"/>
             {/*}<input ref={(location) => {this.location = location}} id="location" type="text" placeholder="LOCATION"/>}*/}
-            <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LATITUDE"/>
-            <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONGITUDE"/>
+            <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LAT"/>
+            <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONG"/>
             <input ref={(addr) => {this.addr = addr}} id="address" type="text" placeholder="ADDRESS"/>
 
             <div>
