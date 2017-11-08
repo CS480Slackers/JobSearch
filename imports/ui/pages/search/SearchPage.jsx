@@ -10,8 +10,8 @@ export default class SearchPage extends Component{
     this.state = {
       address: '',
       loading:true,
-      lat:0,
-      lng:0,
+      lat: 34.0576,
+      lng: -117.8207,
       returnedLocations:[]
     }
 
