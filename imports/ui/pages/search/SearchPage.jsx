@@ -86,9 +86,13 @@ export default class SearchPage extends Component{
         <div className="searchform cf">
           <input ref="position" type="text" placeholder="position?"/>
           <input ref="city" type="text" placeholder="city?" />
+          <input ref="proximity" type="text" placeholder="proximity?" />
           <button onClick={this.handleFormSubmit} id="search" >Search</button>
         </div>
-        {this.state.loading ? null : <GoogleMapsPage lat={this.state.lat} lng={this.state.lng}/>}
+        {this.state.loading ? null : <GoogleMapsPage
+          locations = {this.state.returnedLocations}
+          lat={this.state.lat}
+          lng={this.state.lng}/>}
       </div>
     )
   }

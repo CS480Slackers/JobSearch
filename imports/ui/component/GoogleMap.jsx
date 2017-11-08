@@ -9,6 +9,7 @@ export class GoogleMapsPage extends Component {
       activeMarker: {},
       selectedPlace: {},
     }
+    console.warn(this.props.locations);
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
   }
