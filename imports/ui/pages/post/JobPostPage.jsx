@@ -24,7 +24,7 @@ class JobPostPage extends Component{
     job.longitude = this.longitude.value;
     job.position = this.position.value;
     job.description = this.jobDescription.value;
-    geocodeByAddress(address.streetAddress+" "+address.city+" "+address.state)
+    geocodeByAddress(address.formattedAddress)
       .then(results => getLatLng(results[0]))
       .then(latLng => Meteor.call("jobInsert", job, latLng, function(error,result){
         if(result){
