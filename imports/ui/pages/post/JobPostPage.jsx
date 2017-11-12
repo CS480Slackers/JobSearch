@@ -42,7 +42,7 @@ class JobPostPage extends Component{
   }
 
   //returns majors, an array of strings (majors)
-  getMajors = () => {
+  getMajorsFromTags = () => {
     var majors = [];
     this.state.tags.forEach(function(tag){
       majors.push(tag.text);
@@ -71,7 +71,7 @@ class JobPostPage extends Component{
     job.position = this.position.value;
     job.description = this.jobDescription.value;
     if(this.state.tags.length != 0){ //majors left blank will be set to default value in job.js
-      job.majors = this.getMajors();
+      job.majors = this.getMajorsFromTags();
     }
 
     /*
