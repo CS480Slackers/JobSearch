@@ -27,6 +27,15 @@ export const Job = Class.create({
       }]
     },
 
+    //array of majors the employer would like to hire
+    majors: {
+      type: [String],
+      default: function(){
+        return ["all"]; //when querying by major, we will check if the first element
+                        //of majors[] is "all"
+      }
+    },
+
     latitiude: {
       type: String
     },
