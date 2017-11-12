@@ -93,7 +93,6 @@ class JobPostPage extends Component{
 
   render(){
     const { tags, suggestions } = this.state;
-    console.log(tags, "Tags:");
     return(
 
       <div id="postdiv">
