@@ -9,6 +9,7 @@ export class GoogleMapsPage extends Component {
       activeMarker: {},
       selectedPlace: {},
     }
+    console.warn(this.props.locations);
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
   }
@@ -59,12 +60,12 @@ render() {
           onClick={this.onMarkerClick}
           name={'Current Location'}
           position= {{lat:lat, lng:lng}} />
-          <Marker
+          {/* <Marker
             title={'Japanese Garden'}
             onClick={this.onMarkerClick}
             name={'Japanese Garden'}
             jobName={"Landscape Engineer"}
-            position= {{lat:34.0599, lng:-117.8204}} />
+            position= {{lat:34.0599, lng:-117.8204}} /> */}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
