@@ -25,4 +25,3 @@ practicalmeteor:mocha
 meteortesting:mocha
 practicalmeteor:chai
 session
-mdg:geolocation

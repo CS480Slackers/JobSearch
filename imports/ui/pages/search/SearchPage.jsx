@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import GoogleMapsPage from '/imports/ui/component/GoogleMap.jsx';
-import { Geolocation } from 'meteor/mdg:geolocation';
 // import GoogleMap2 from '/imports/ui/component/GoogleMap2.jsx';
 
 import location from '@derhuerst/browser-location';
@@ -20,7 +19,6 @@ export default class SearchPage extends Component{
     this.findNearJobLocations = this.findNearJobLocations.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.clearInput = this.clearInput.bind(this);
-    this.setCurrentLocation = this.setCurrentLocation.bind(this);
 
     this.onChange = (address) => this.setState({ address })
 
@@ -28,17 +26,15 @@ export default class SearchPage extends Component{
 
    componentWillMount(){
     //  Set initial location as the user's current location
-    this.setCurrentLocation();
-   }
-
-   setCurrentLocation() {
-     var latLng = new ReactiveVar();
-     let self = this;
-     Tracker.autorun(function(computation) {
-         latLng.set(Geolocation.latLng());
-         if (latLng.get()) {
-             computation.stop();
-             self.setState({lat:latLng.curValue.lat, lng:latLng.curValue.lng, loading: false})
+     location((err, loc) => {
+         if (err){
+           console.error(err)
+           this.setState({loading:false});
+         }
+         else {
+           this.setState({lat:loc.latitude, lng:loc.longitude, loading: false})
+           console.log('state', this.state);
+           console.log('loc', loc);
          }
      })
    }
