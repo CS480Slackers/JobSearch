@@ -15,6 +15,9 @@ export class GoogleMapsPage extends Component {
   }
 
   onMarkerClick = (props, marker, e) => {
+    console.log('props', props);
+    console.log('marker', marker);
+    console.log('e', e);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -35,7 +38,7 @@ export class GoogleMapsPage extends Component {
   }
 
 render() {
-    let {lat, lng} = this.props;
+    let {lat, lng, jobs} = this.props;
     const style = {
       width: '90%',
       height: '70%',
@@ -46,6 +49,18 @@ render() {
       borderRadius:'3%',
 
     }
+    let self = this;
+    let jobList = jobs.map(function(job, i){
+      console.log('job ', job, "key ", i);
+      return (
+        <Marker
+          title={job.company}
+          onClick={self.onMarkerClick}
+          name={job.company}
+          jobPosition={job.position}
+          position= {{lat:job.location.coordinates[1], lng:job.location.coordinates[0]}} />
+      )
+    })
     return (
       <Map
         clickableIcons={false}
@@ -55,25 +70,15 @@ render() {
         style={style}
         onClick= {this.onMapClicked}
         >
-        <Marker
-          title={'Current Location'}
-          onClick={this.onMarkerClick}
-          name={'Current Location'}
-          position= {{lat:lat, lng:lng}} />
-          {/* <Marker
-            title={'Japanese Garden'}
-            onClick={this.onMarkerClick}
-            name={'Japanese Garden'}
-            jobName={"Landscape Engineer"}
-            position= {{lat:34.0599, lng:-117.8204}} /> */}
+        {jobList}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
-              <div style={{color: 'black'}}>
-                <h5>{this.state.selectedPlace.name}</h5>
-                <h5>{this.state.selectedPlace.jobName}</h5>
-              </div>
-            </InfoWindow>
+            <div style={{color: 'black'}}>
+              <h5>{this.state.selectedPlace.name}</h5>
+              <h5>{this.state.selectedPlace.jobPosition}</h5>
+            </div>
+          </InfoWindow>
       </Map>
 
     );

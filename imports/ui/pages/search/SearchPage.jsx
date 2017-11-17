@@ -28,13 +28,10 @@ export default class SearchPage extends Component{
     //  Set initial location as the user's current location
      location((err, loc) => {
          if (err){
-           console.error(err)
            this.setState({loading:false});
          }
          else {
            this.setState({lat:loc.latitude, lng:loc.longitude, loading: false})
-           console.log('state', this.state);
-           console.log('loc', loc);
          }
      })
    }
@@ -46,7 +43,10 @@ export default class SearchPage extends Component{
 
   findNearJobLocations(){
     let self = this;
-    Meteor.call("findNearest", this.state.lat, this.state.lng, 5000, function(error, result){
+
+    let maxDist = this.refs.proximity.value;
+    maxDist *= 1000;
+    Meteor.call("findNearest", this.state.lat, this.state.lng, maxDist, function(error, result){
       if(result){
         self.setState({returnedLocations: result});
       }
@@ -86,13 +86,14 @@ export default class SearchPage extends Component{
         <div className="searchform cf">
           <input ref="position" type="text" placeholder="position?"/>
           <input ref="city" type="text" placeholder="city?" />
-          <input ref="proximity" type="text" placeholder="proximity?" />
+          <input ref="proximity" type="text" placeholder="miles?" />
           <button onClick={this.handleFormSubmit} id="search" >Search</button>
         </div>
         {this.state.loading ? null : <GoogleMapsPage
           locations = {this.state.returnedLocations}
           lat={this.state.lat}
-          lng={this.state.lng}/>}
+          lng={this.state.lng}
+          jobs={this.state.returnedLocations}/>}
       </div>
     )
   }
