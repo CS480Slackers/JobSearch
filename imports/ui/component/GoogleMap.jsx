@@ -9,22 +9,16 @@ export class GoogleMapsPage extends Component {
       activeMarker: {},
       selectedPlace: {},
     }
-    console.warn(this.props.locations);
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
   }
 
   onMarkerClick = (props, marker, e) => {
-    console.log('props', props);
-    console.log('marker', marker);
-    console.log('e', e);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
-    console.warn(this.state);
-    console.warn(this.state.selectedPlace.name);
   }
 
   onMapClicked = (props) => {
