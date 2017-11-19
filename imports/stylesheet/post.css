@@ -124,3 +124,31 @@ textarea:hover {
 #submit:hover {
   color: #000000;
 }
+
+ul{
+  background-color: #ffffff;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.ReactTags__selected{
+  background-color: #ffffff;
+  width: 470px;
+  border-bottom: none;
+}
+
+.ReactTags__tags{
+  width: 470px;
+  background-color: #ffffff;
+
+  border-bottom: none;
+}
+
+.ReactTags__tag{
+  margin: 5px;
+  border-bottom: none;
+}
+
+.ReactTags__remove{
+  color: #999999;
+}
