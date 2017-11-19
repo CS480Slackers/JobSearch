@@ -22,6 +22,10 @@ class JobPostPage extends Component{
     this.handleFilterSuggestions = this.handleFilterSuggestions.bind(this);
   }
 
+  componentDidMount(){
+    $(".ReactTags__suggestions").css({backgroundColor:"#ffffff"});
+  }
+
   handleDelete(i) {
     this.setState({
       tags: this.state.tags.filter((tag, index) => index !== i),
@@ -103,7 +107,9 @@ class JobPostPage extends Component{
             <input ref={(name) => { this.name = name }} id="name" type="text" placeholder="COMPANY NAME"/>
             <input ref={(position) => {this.position = position}} id="position" type="text" placeholder="POSITION"/>
             {/*}<input ref={(location) => {this.location = location}} id="location" type="text" placeholder="LOCATION"/>}*/}
-            <ReactTags tags={tags}
+            <ReactTags
+              id="tags"
+              tags={tags}
                 suggestions={suggestions}
                 placeholder="Add Majors you're interested in hiring."
                 handleDelete={this.handleDelete}
