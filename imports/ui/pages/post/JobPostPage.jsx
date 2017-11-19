@@ -51,6 +51,18 @@ class JobPostPage extends Component{
     return majors;
   }
 
+  // clearInput = () => {
+  //   this.name.value = "";
+  //   this.position.value = "";
+  //   this.latitude.value = "";
+  //   this.longitude.value = "";
+  //   this.address.test = "";
+  //   this.city_ref.value = "";
+  //   this.state.value = "";
+  //   this.zip.value = "";
+  //   this.description.value = "";
+  // }
+
   submitJob = () => {
     var job = new Job();
     var address = new Address();
@@ -70,6 +82,7 @@ class JobPostPage extends Component{
     job.longitude = this.longitude.value;
     job.position = this.position.value;
     job.description = this.jobDescription.value;
+
     if(this.state.tags.length != 0){ //majors left blank will be set to default value in job.js
       job.majors = this.getMajorsFromTags();
     }
@@ -82,10 +95,14 @@ class JobPostPage extends Component{
       .then(latLng => Meteor.call("jobInsert", job, latLng, function(error,result){
         if(result){
           let jobId = result;
-          console.log("Job ID", jobId);
-          browserHistory.push("/submission/"+jobId);
+          console.warn("Job ID", jobId);
+          // this.clearInput();
+          return Bert.alert('Thank you for your review.', 'success',
+                        'fixed-top', 'fa-thumbs-o-up');
         }else {
-          console.log("failed insert");
+          // this.clearInput();
+          return Bert.alert('Error. Please Try Again.', 'danger',
+                        'fixed-top', 'fa-thumbs-o-down');
         }
       }))
       .catch(error => console.error(error))
