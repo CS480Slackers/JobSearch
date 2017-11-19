@@ -52,6 +52,7 @@ render() {
           onClick={self.onMarkerClick}
           name={job.company}
           jobPosition={job.position}
+          description={job.description}
           position= {{lat:job.location.coordinates[1], lng:job.location.coordinates[0]}} />
       )
     })
@@ -69,8 +70,9 @@ render() {
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
             <div style={{color: 'black'}}>
-              <h5>{this.state.selectedPlace.name}</h5>
+              <h3> <strong>{this.state.selectedPlace.name} </strong></h3>
               <h5>{this.state.selectedPlace.jobPosition}</h5>
+              <h5>{this.state.selectedPlace.description}</h5>
             </div>
           </InfoWindow>
       </Map>
