@@ -4,6 +4,7 @@ import GoogleMapsPage from '/imports/ui/component/GoogleMap.jsx';
 // import GoogleMap2 from '/imports/ui/component/GoogleMap2.jsx';
 
 import location from '@derhuerst/browser-location';
+
 export default class SearchPage extends Component{
   constructor(props) {
     super(props)
@@ -48,7 +49,11 @@ export default class SearchPage extends Component{
     maxDist *= 1000;
     Meteor.call("findNearest", this.state.lat, this.state.lng, maxDist, function(error, result){
       if(result){
+        console.log('output from results');
         self.setState({returnedLocations: result});
+      }
+      if(error){
+            console.log("error from finding nearest");
       }
     });
   }
@@ -79,13 +84,15 @@ export default class SearchPage extends Component{
       onChange: this.onChange,
     }
 
-
     console.log('returned locations', this.state.returnedLocations);
+
     return(
-      <div className="center-block text-center" style={{marginTop:"20%"}}>
+      <div id = "searchDiv">
+        <div><a>'null'</a></div>
+      <div className="center-block text-center" style={{marginTop:"2%"}}>
         <div className="searchform cf">
           <input ref="position" type="text" placeholder="position?"/>
-          <input ref="city" type="text" placeholder="city?" />
+          <input ref="city" type="text" placeholder="city?" value = "cal poly pomona"/>
           <input ref="proximity" type="text" placeholder="miles?" value="10" />
           <button onClick={this.handleFormSubmit} id="search" >Search</button>
         </div>
@@ -94,6 +101,7 @@ export default class SearchPage extends Component{
           lat={this.state.lat}
           lng={this.state.lng}
           jobs={this.state.returnedLocations}/>}
+      </div>
       </div>
     )
   }

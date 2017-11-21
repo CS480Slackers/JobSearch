@@ -16,9 +16,22 @@
     clear:both;
 }*/
 
+#searchDiv {
+  height:100vh;
+  background-image: url("https://i4.imaiges.com/wallpaper/1/252/860/city-binocular-view-finder-sky-1920x1080.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  color: #b3aca7;
+}
+#mapDiv{
+  height: 10%;
+}
 body {
-  background: #3aaae8;
+  background: #DCDCDC;
   color: #fff;
+  overflow: hidden;
   font:12px/18px 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 a,a:visited {
