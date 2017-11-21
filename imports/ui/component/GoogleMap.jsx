@@ -40,9 +40,9 @@ render() {
       marginRight:'50px',
       marginTop:'50px',
       border:'solid 2px #fff',
-      borderRadius:'3%',
-
+      borderRadius:'3%'
     }
+
     let self = this;
     let jobList = jobs.map(function(job, i){
       console.log('job ', job, "key ", i);
