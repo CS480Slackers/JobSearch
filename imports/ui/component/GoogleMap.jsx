@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Link, browserHistory} from 'react-router';
 
 export class GoogleMapsPage extends Component {
   constructor(props) {
@@ -31,6 +32,10 @@ export class GoogleMapsPage extends Component {
     }
   }
 
+  onBtnClicked = (e) =>{
+    console.log("this button was clicked")
+  }
+
 render() {
     let {lat, lng, jobs} = this.props;
     const style = {
@@ -56,6 +61,8 @@ render() {
           position= {{lat:job.location.coordinates[1], lng:job.location.coordinates[0]}} />
       )
     })
+
+
     return (
       <Map
         clickableIcons={false}
@@ -73,6 +80,7 @@ render() {
               <h3> <strong>{this.state.selectedPlace.name} </strong></h3>
               <h5>{this.state.selectedPlace.jobPosition}</h5>
               <h5>{this.state.selectedPlace.description}</h5>
+              <button onClick={console.log("details is clicked")}>Details</button>
             </div>
           </InfoWindow>
       </Map>
