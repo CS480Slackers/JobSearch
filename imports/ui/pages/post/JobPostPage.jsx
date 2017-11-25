@@ -35,7 +35,11 @@ class JobPostPage extends Component{
   handleAddition(tag) {
     let { tags } = this.state;
     this.setState({ tags: [...tags, {
-      id: (tags.length == 0) ? 1 : tags[tags.length-1].id + 1, text: tag }] });
+      id: (tags.length == 0) ? 1 : tags[tags.length-1].id + 1, text: tag }],
+      suggestions: this.state.suggestions.filter(function(suggestion) {
+        return !(suggestion.toLowerCase() === tag.toLowerCase())
+      })
+    })
   }
 
   handleFilterSuggestions(textInputValue, possibleSuggestionsArray){
