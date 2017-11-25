@@ -131,11 +131,12 @@ class JobPostPage extends Component{
             <ReactTags
               id="tags"
               tags={tags}
-                suggestions={suggestions}
-                placeholder="Add Majors you're interested in hiring."
-                handleDelete={this.handleDelete}
-                handleAddition={this.handleAddition}
-                handleFilterSuggestions={this.handleFilterSuggestions}
+              suggestions={suggestions}
+              placeholder="Add Majors you're interested in hiring."
+              handleDelete={this.handleDelete}
+              autocomplete={true}
+              handleAddition={this.handleAddition}
+              handleFilterSuggestions={this.handleFilterSuggestions}
             />
             <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LATITUDE"/>
             <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONGITUDE"/>
