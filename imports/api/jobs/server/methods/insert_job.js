@@ -10,6 +10,8 @@ Meteor.methods({
       type:"Point",
       coordinates:[latLng.lng, latLng.lat]
     }
+    Meteor.call("positionInsert", job.position);
+
     var tempId = job.save();
     console.log('id', tempId);
     console.log("Job Posting", job);
