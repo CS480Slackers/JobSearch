@@ -7,15 +7,7 @@ import {WithContext as ReactTags} from 'react-tag-input';
 
 import location from '@derhuerst/browser-location';
 
-var posList = [];
-Meteor.call("getPositions", function(err, result) {
-  if(result){
-    console.log("result", result);
-    posList = result;
-  }else{
-    console.log("error", err);
-  }
-})
+var addedJob = false;
 
 export default class SearchPage extends Component{
   constructor(props) {
@@ -28,10 +20,10 @@ export default class SearchPage extends Component{
       lng: -117.8207,
       returnedLocations:[],
       pos_tags: [],
-      pos_suggestions: ["Engineer", "Spaghetti", "Heheman", "Jeff", "Utah", "aaa"]
+      pos_suggestions: []
       // pos_suggestions: posList
-
     }
+    // console.log('allPosition', props.allPosition );
 
     this.positionHandleDelete = this.positionHandleDelete.bind(this);
     this.positionHandleAddition = this.positionHandleAddition.bind(this);
@@ -80,6 +72,10 @@ export default class SearchPage extends Component{
            this.setState({lat:loc.latitude, lng:loc.longitude, loading: false})
          }
      })
+   }
+
+   componentDidMount(){
+
    }
 
   setLocation(latLng){
@@ -150,43 +146,64 @@ export default class SearchPage extends Component{
   }
 
   render(){
-    const {pos_tags, pos_suggestions} = this.state;
-    console.log("state", this.state);
 
-    const inputProps = {
-      value: this.state.address,
-      onChange: this.onChange,
+
+    if(this.props.loading){
+      return <div>Loading</div>
     }
+    else{
+      if(addedJob == false){
+        if(this.props.allPosition.length > 0){
+          let positions = []
+          for(i = 0; i < this.props.allPosition.length; i++){
+            console.log('adding', this.props.allPosition[i]);
+            positions.push(this.props.allPosition[i].text);
+          }
+          this.setState({pos_suggestions: positions});
+        }
+        addedJob = true;
+      }
 
-    console.log('returned locations', this.state.returnedLocations);
+      console.log('pos_suggestions',this.state.pos_suggestions);
+      const {pos_tags, pos_suggestions} = this.state;
+      console.log("state", this.state);
 
-    return(
-      <div id = "searchDiv">
-        <div><a>'null'</a></div>
-      <div className="center-block text-center" style={{marginTop:"2%"}}>
-        <div className="searchform cf">
-          {/* <input ref={(position) => {this.position = position}} type="text" placeholder="position?"/> */}
-          <ReactTags
-            id="positions"
-            tags={pos_tags}
-            suggestions={pos_suggestions}
-            placeholder="Enter positions you're interested in."
-            handleDelete={this.positionHandleDelete}
-            autocomplete={true}
-            handleAddition={this.positionHandleAddition}
-            handleFilterSuggestions={this.positionHandleFilterSuggestions}
-          />
-          <input ref="city" type="text" placeholder="city?" value = "Irvine"/>
-          <input ref="proximity" type="text" placeholder="miles?" value="10" />
-          <button onClick={this.handleFormSubmit} id="search" >Search</button>
+      const inputProps = {
+        value: this.state.address,
+        onChange: this.onChange,
+      }
+
+      console.log('returned locations', this.state.returnedLocations);
+
+      return(
+        <div id = "searchDiv">
+          <div><a>'null'</a></div>
+        <div className="center-block text-center" style={{marginTop:"2%"}}>
+          <div className="searchform cf">
+            {/* <input ref={(position) => {this.position = position}} type="text" placeholder="position?"/> */}
+            <ReactTags
+              id="positions"
+              tags={pos_tags}
+              suggestions={pos_suggestions}
+              placeholder="Enter positions you're interested in."
+              handleDelete={this.positionHandleDelete}
+              autocomplete={true}
+              handleAddition={this.positionHandleAddition}
+              handleFilterSuggestions={this.positionHandleFilterSuggestions}
+            />
+            <input ref="city" type="text" placeholder="city?" value = "Irvine"/>
+            <input ref="proximity" type="text" placeholder="miles?" value="10" />
+            <button onClick={this.handleFormSubmit} id="search" >Search</button>
+          </div>
+          {this.state.loading ? null : <GoogleMapsPage
+            locations = {this.state.returnedLocations}
+            lat={this.state.lat}
+            lng={this.state.lng}
+            jobs={this.state.returnedLocations}/>}
         </div>
-        {this.state.loading ? null : <GoogleMapsPage
-          locations = {this.state.returnedLocations}
-          lat={this.state.lat}
-          lng={this.state.lng}
-          jobs={this.state.returnedLocations}/>}
-      </div>
-      </div>
-    )
+        </div>
+      )
+    }
   }
+
 }

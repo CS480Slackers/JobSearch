@@ -13,3 +13,5 @@ import '/imports/api/jobs/server/methods/clear_db.js';
 import '/imports/api/jobs/server/methods/getNearLocation.js';
 import '/imports/api/jobs/server/methods/get_hash.js';
 import '/imports/api/jobs/server/methods/insert_position.js';
+
+import '/imports/api/jobs/server/publications/get_all_position.js';
