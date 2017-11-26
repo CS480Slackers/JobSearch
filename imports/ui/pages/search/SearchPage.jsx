@@ -163,6 +163,7 @@ export default class SearchPage extends Component{
         }
         addedJob = true;
       }
+<<<<<<< HEAD
 
       console.log('pos_suggestions',this.state.pos_suggestions);
       const {pos_tags, pos_suggestions} = this.state;
@@ -173,6 +174,18 @@ export default class SearchPage extends Component{
         onChange: this.onChange,
       }
 
+=======
+
+      console.log('pos_suggestions',this.state.pos_suggestions);
+      const {pos_tags, pos_suggestions} = this.state;
+      console.log("state", this.state);
+
+      const inputProps = {
+        value: this.state.address,
+        onChange: this.onChange,
+      }
+
+>>>>>>> ae1db97de41ea3691e890ef6926fa5d2bfed7ccb
       console.log('returned locations', this.state.returnedLocations);
 
       return(
@@ -200,8 +213,13 @@ export default class SearchPage extends Component{
             lat={this.state.lat}
             lng={this.state.lng}
             jobs={this.state.returnedLocations}/>}
+<<<<<<< HEAD
         </div>
         </div>
+=======
+        </div>
+        </div>
+>>>>>>> ae1db97de41ea3691e890ef6926fa5d2bfed7ccb
       )
     }
   }
