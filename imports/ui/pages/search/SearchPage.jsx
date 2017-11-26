@@ -39,14 +39,6 @@ export default class SearchPage extends Component{
       pos_suggestions: ["Engineer", "Spaghetti", "Heheman", "Jeff", "Utah"]
       // pos_suggestions: posList
 
-      // Meteor.call("getPositions", function(error, result) {
-      //   if(result){
-      //     suggestions = result,
-      //     console.warn("suggestions array: ", suggestions)
-      //   }else { //change maybe?
-      //     console.log(err, "Error")
-      //   }
-      // }),
     }
 
     this.positionHandleDelete = this.positionHandleDelete.bind(this);
