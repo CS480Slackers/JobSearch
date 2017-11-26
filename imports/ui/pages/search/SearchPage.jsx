@@ -20,14 +20,6 @@ Meteor.call("getPositions", function(err, result) {
 export default class SearchPage extends Component{
   constructor(props) {
     super(props)
-    // const position_list = [];
-    // Meteor.call("getPositions", function(err, result) {
-    //   if(result){
-    //     position_list = result;
-    //   }else{
-    //     console.log("error", err);
-    //   }
-    // })
 
     this.state = {
       address: '',
@@ -36,7 +28,7 @@ export default class SearchPage extends Component{
       lng: -117.8207,
       returnedLocations:[],
       pos_tags: [],
-      pos_suggestions: ["Engineer", "Spaghetti", "Heheman", "Jeff", "Utah"]
+      pos_suggestions: ["Engineer", "Spaghetti", "Heheman", "Jeff", "Utah", "aaa"]
       // pos_suggestions: posList
 
     }
@@ -72,7 +64,6 @@ export default class SearchPage extends Component{
   }
 
   positionHandleFilterSuggestions(textInputValue, possibleSuggestionsArray){
-    console.log(possibleSuggestionsArray, "AYYYYY");
     var lowerCaseQuery = textInputValue.toLowerCase();
     return possibleSuggestionsArray.filter( function(suggestion) {
       return suggestion.toLowerCase().includes(lowerCaseQuery)
@@ -104,7 +95,26 @@ export default class SearchPage extends Component{
     Meteor.call("findNearest", this.state.lat, this.state.lng, maxDist, function(error, result){
       if(result){
         console.log('output from results');
-        self.setState({returnedLocations: result});
+        if(self.state.pos_tags.length != 0){
+          //TODO IN PROGRESS filter by position
+          var filteredByPos = [];
+          //filteredyByPos is an array of jobs filtered by position
+          var filteredByPos = result.filter( function(job){ //for each job
+            var add = false;
+            self.state.pos_tags.forEach(function(tag){ //for each pos_tag, compare if the job has the same position
+              if(tag.text.toLowerCase() === job.position){
+                add = true; //if the job contains a matching position, we'll add it to the filteredByPos array
+                console.log("tag = position", job.position);
+                return true;
+              }
+            })
+            return add;
+          })
+          self.setState({returnedLocations: filteredByPos});
+        }
+        else{
+          self.setState({returnedLocations: result});
+        }
       }
       if(error){
             console.log("error from finding nearest");
@@ -158,7 +168,7 @@ export default class SearchPage extends Component{
             handleAddition={this.positionHandleAddition}
             handleFilterSuggestions={this.positionHandleFilterSuggestions}
           />
-          <input ref="city" type="text" placeholder="city?" value = "cal poly pomona"/>
+          <input ref="city" type="text" placeholder="city?" value = "Irvine"/>
           <input ref="proximity" type="text" placeholder="miles?" value="10" />
           <button onClick={this.handleFormSubmit} id="search" >Search</button>
         </div>
