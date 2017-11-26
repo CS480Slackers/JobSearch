@@ -87,6 +87,26 @@ export default class SearchPage extends Component{
     this.findNearJobLocations();
   }
 
+  filterByPosition(arr){
+    let self = this;
+    if(self.state.pos_tags.length != 0){
+      //TODO IN PROGRESS filter by position
+      var filteredByPos = [];
+      //filteredyByPos is an array of jobs filtered by position
+      var filteredByPos = arr.filter( function(job){ //for each job
+        var add = false;
+        for(var i = 0; i < selt.state.pos_tags.length; i++){
+          if(self.state.pos_tags[i].text.toLowerCase() === job.position.toLowerCase()){
+            add = true;
+            console.log("tag = position", job.position);
+            break;
+          }
+        }
+        return add;
+      })
+      return filteredByPos;
+  }
+
   findNearJobLocations(){
     let self = this;
 
@@ -97,19 +117,7 @@ export default class SearchPage extends Component{
         console.log('output from results');
         if(self.state.pos_tags.length != 0){
           //TODO IN PROGRESS filter by position
-          var filteredByPos = [];
-          //filteredyByPos is an array of jobs filtered by position
-          var filteredByPos = result.filter( function(job){ //for each job
-            var add = false;
-            self.state.pos_tags.forEach(function(tag){ //for each pos_tag, compare if the job has the same position
-              if(tag.text.toLowerCase() === job.position){
-                add = true; //if the job contains a matching position, we'll add it to the filteredByPos array
-                console.log("tag = position", job.position);
-                return true;
-              }
-            })
-            return add;
-          })
+          var filteredByPos = filterByPosition(result);
           self.setState({returnedLocations: filteredByPos});
         }
         else{
