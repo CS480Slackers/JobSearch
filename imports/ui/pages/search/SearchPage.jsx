@@ -3,8 +3,6 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import GoogleMapsPage from '/imports/ui/component/GoogleMap.jsx';
 import {WithContext as ReactTags} from 'react-tag-input';
 
-// import GoogleMap2 from '/imports/ui/component/GoogleMap2.jsx';
-
 import location from '@derhuerst/browser-location';
 
 var addedJob = false;
@@ -74,10 +72,6 @@ export default class SearchPage extends Component{
      })
    }
 
-   componentDidMount(){
-
-   }
-
   setLocation(latLng){
     this.setState({lat:latLng.lat, lng:latLng.lng});
     this.findNearJobLocations();
@@ -91,7 +85,7 @@ export default class SearchPage extends Component{
       //filteredyByPos is an array of jobs filtered by position
       var filteredByPos = arr.filter( function(job){ //for each job
         var add = false;
-        for(var i = 0; i < selt.state.pos_tags.length; i++){
+        for(var i = 0; i < self.state.pos_tags.length; i++){
           if(self.state.pos_tags[i].text.toLowerCase() === job.position.toLowerCase()){
             add = true;
             console.log("tag = position", job.position);
@@ -101,6 +95,7 @@ export default class SearchPage extends Component{
         return add;
       })
       return filteredByPos;
+    }
   }
 
   findNearJobLocations(){
@@ -113,7 +108,7 @@ export default class SearchPage extends Component{
         console.log('output from results');
         if(self.state.pos_tags.length != 0){
           //TODO IN PROGRESS filter by position
-          var filteredByPos = filterByPosition(result);
+          var filteredByPos = self.filterByPosition(result);
           self.setState({returnedLocations: filteredByPos});
         }
         else{
@@ -163,7 +158,6 @@ export default class SearchPage extends Component{
         }
         addedJob = true;
       }
-<<<<<<< HEAD
 
       console.log('pos_suggestions',this.state.pos_suggestions);
       const {pos_tags, pos_suggestions} = this.state;
@@ -174,18 +168,6 @@ export default class SearchPage extends Component{
         onChange: this.onChange,
       }
 
-=======
-
-      console.log('pos_suggestions',this.state.pos_suggestions);
-      const {pos_tags, pos_suggestions} = this.state;
-      console.log("state", this.state);
-
-      const inputProps = {
-        value: this.state.address,
-        onChange: this.onChange,
-      }
-
->>>>>>> ae1db97de41ea3691e890ef6926fa5d2bfed7ccb
       console.log('returned locations', this.state.returnedLocations);
 
       return(
@@ -204,8 +186,8 @@ export default class SearchPage extends Component{
               handleAddition={this.positionHandleAddition}
               handleFilterSuggestions={this.positionHandleFilterSuggestions}
             />
-            <input ref="city" type="text" placeholder="city?" value = "Irvine"/>
-            <input ref="proximity" type="text" placeholder="miles?" value="10" />
+            <input ref="city" type="text" placeholder="city?" />
+            <input ref="proximity" type="text" placeholder="miles?"/>
             <button onClick={this.handleFormSubmit} id="search" >Search</button>
           </div>
           {this.state.loading ? null : <GoogleMapsPage
@@ -213,13 +195,8 @@ export default class SearchPage extends Component{
             lat={this.state.lat}
             lng={this.state.lng}
             jobs={this.state.returnedLocations}/>}
-<<<<<<< HEAD
         </div>
-        </div>
-=======
-        </div>
-        </div>
->>>>>>> ae1db97de41ea3691e890ef6926fa5d2bfed7ccb
+      </div>
       )
     }
   }
