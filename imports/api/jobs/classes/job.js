@@ -19,7 +19,7 @@ export const Job = Class.create({
       }]
     },
 
-    position: {
+    position: { //WE DO NOT NEED TO MAKE THIS A POSITION INSTANCE, USING A STRING IS FINE
       type: String,
       validators: [{
         type: 'minLength',

@@ -35,7 +35,11 @@ class JobPostPage extends Component{
   handleAddition(tag) {
     let { tags } = this.state;
     this.setState({ tags: [...tags, {
-      id: (tags.length == 0) ? 1 : tags[tags.length-1].id + 1, text: tag }] });
+      id: (tags.length == 0) ? 1 : tags[tags.length-1].id + 1, text: tag }],
+      suggestions: this.state.suggestions.filter(function(suggestion) {
+        return !(suggestion.toLowerCase() === tag.toLowerCase())
+      })
+    })
   }
 
   handleFilterSuggestions(textInputValue, possibleSuggestionsArray){
@@ -48,7 +52,7 @@ class JobPostPage extends Component{
   //returns majors, an array of strings (majors)
   getMajorsFromTags = () => {
     var majors = [];
-    this.state.tags.forEach(function(tag){
+    this.state.tags.forEach((tag) => {
       majors.push(tag.text);
     });
     console.log(majors, "Majors: ");
@@ -127,11 +131,12 @@ class JobPostPage extends Component{
             <ReactTags
               id="tags"
               tags={tags}
-                suggestions={suggestions}
-                placeholder="Add Majors you're interested in hiring."
-                handleDelete={this.handleDelete}
-                handleAddition={this.handleAddition}
-                handleFilterSuggestions={this.handleFilterSuggestions}
+              suggestions={suggestions}
+              placeholder="Add Majors you're interested in hiring."
+              handleDelete={this.handleDelete}
+              autocomplete={true}
+              handleAddition={this.handleAddition}
+              handleFilterSuggestions={this.handleFilterSuggestions}
             />
             <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LATITUDE"/>
             <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONGITUDE"/>
