@@ -92,8 +92,8 @@ export default class SearchPage extends Component{
       <div className="center-block text-center" style={{marginTop:"2%"}}>
         <div className="searchform cf">
           <input ref="position" type="text" placeholder="position?"/>
-          <input ref="city" type="text" placeholder="city?" value = "cal poly pomona"/>
-          <input ref="proximity" type="text" placeholder="miles?" value="10" />
+          <input ref="city" type="text" placeholder="city?"/>
+          <input ref="proximity" type="number" />
           <button onClick={this.handleFormSubmit} id="search" >Search</button>
         </div>
         {this.state.loading ? null : <GoogleMapsPage
