@@ -52,7 +52,7 @@ class JobPostPage extends Component{
   //returns majors, an array of strings (majors)
   getMajorsFromTags = () => {
     var majors = [];
-    this.state.tags.forEach(function(tag){
+    this.state.tags.forEach((tag) => {
       majors.push(tag.text);
     });
     console.log(majors, "Majors: ");
