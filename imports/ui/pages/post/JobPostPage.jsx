@@ -8,7 +8,6 @@ import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import {WithContext as ReactTags} from 'react-tag-input'
 import {Majors} from '/imports/api/jobs/major_list.js';
 
-
 class JobPostPage extends Component{
   constructor(props){
     super(props);
@@ -119,12 +118,17 @@ class JobPostPage extends Component{
       .catch(error => console.error(error))
   }
 
+  returnHome = () => {
+      console.log("back Pushed");
+      browserHistory.push("/");
+    }
+
   render(){
     const { tags, suggestions } = this.state;
     return(
 
       <div id="postdiv">
-        <a href={"/"} className="button"> BACK </a>
+        <button className ="HomeButton" onClick = {this.returnHome}> BACK </button>
         <div className="post-form">
           <h1>Post a Job</h1>
           <div className="contentform">
