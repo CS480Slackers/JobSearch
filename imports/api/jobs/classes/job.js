@@ -40,7 +40,7 @@ export const Job = Class.create({
     //   type: String
     //   optional: true
     // },
-    // 
+    //
     // longitude: {
     //   type: String
     // },
@@ -55,7 +55,6 @@ export const Job = Class.create({
     //Stores an address object that would be initialized based on user input
     location2: {
       type: Address,
-      optional: true //DELETE ONCE location2 IS IMPLEMENTED
     },
 
     description: {
@@ -87,7 +86,6 @@ export const Job = Class.create({
     */
     url:{
       type:String,
-      optional:true
     },
     //this will only be defined if job was posted on a different site, or if
     //specified by the poster

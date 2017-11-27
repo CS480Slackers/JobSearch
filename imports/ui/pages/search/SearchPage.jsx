@@ -78,15 +78,14 @@ export default class SearchPage extends Component{
   }
 
   filterByPosition(arr){
-    let self = this;
-    if(self.state.pos_tags.length != 0){
+    if(this.state.pos_tags.length != 0){
       //TODO IN PROGRESS filter by position
       var filteredByPos = [];
       //filteredyByPos is an array of jobs filtered by position
       var filteredByPos = arr.filter( function(job){ //for each job
         var add = false;
-        for(var i = 0; i < self.state.pos_tags.length; i++){
-          if(self.state.pos_tags[i].text.toLowerCase() === job.position.toLowerCase()){
+        for(var i = 0; i < this.state.pos_tags.length; i++){
+          if(this.state.pos_tags[i].text.toLowerCase() === job.position.toLowerCase()){
             add = true;
             console.log("tag = position", job.position);
             break;
