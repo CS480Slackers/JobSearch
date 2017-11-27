@@ -109,7 +109,7 @@ class JobPostPage extends Component{
           return Bert.alert('Thank you for your review.', 'success',
                         'fixed-top', 'fa-thumbs-o-up');
         }else {
-          
+
           return Bert.alert('Error. Please Try Again.', 'danger',
                         'fixed-top', 'fa-thumbs-o-down');
         }
@@ -123,6 +123,7 @@ class JobPostPage extends Component{
 
       <div id="postdiv">
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo&libraries=places"></script>
+        <a href={"/"} className="button"> BACK </a>
         <div id = "PostHeader">Post a Job</div>
 
         <div id="form" className="topBefore">
