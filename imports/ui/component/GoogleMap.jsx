@@ -53,6 +53,7 @@ render() {
       console.log('job ', job, "key ", i);
       return (
         <Marker
+          key={i}
           title={job.company}
           onClick={self.onMarkerClick}
           name={job.company}
