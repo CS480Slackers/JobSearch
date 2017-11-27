@@ -26,7 +26,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #358BE6;
+  background: #5E9FE3;
   color: #ffffff;
   transition: all.5s ease;
   -webkit-appearance: none;
@@ -98,7 +98,12 @@ a, a:visited {
   -webkit-border-radius: 9px;
   height: auto !important;
 }
-
+.mile{
+  width: 70px !important;
+}
+.city{
+  width: 100px !important;
+}
 .searchform input:focus {
   outline: none;
   box-shadow: 0 0 4px #0d76be inset;
