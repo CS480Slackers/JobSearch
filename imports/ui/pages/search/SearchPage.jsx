@@ -171,7 +171,7 @@ export default class SearchPage extends Component{
 
       return(
         <div id = "searchDiv">
-          <div><a>'null'</a></div>
+          <a href={"/"} className="button"> BACK </a>
         <div className="center-block text-center" style={{marginTop:"2%"}}>
           <div className="searchform cf">
             {/* <input ref={(position) => {this.position = position}} type="text" placeholder="position?"/> */}

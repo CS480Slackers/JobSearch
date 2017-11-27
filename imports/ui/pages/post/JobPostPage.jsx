@@ -125,6 +125,7 @@ class JobPostPage extends Component{
 
       <div id="postdiv">
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo&libraries=places"></script>
+        <a href={"/"} className="button"> BACK </a>
         <div id = "PostHeader">Post a Job</div>
 
         <div id="form" className="topBefore">
