@@ -70,6 +70,7 @@ export default class SearchPage extends Component{
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.showPosition);
         } else {
+          this.setState({loading: false});
             alert("Geolocation is not supported by this browser.");
         }
     }
