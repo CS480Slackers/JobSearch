@@ -89,7 +89,7 @@ render() {
                   <h5>{this.state.selectedPlace.jobPosition}</h5>
 
                 </div>
-                <a style={{color: 'blue'}}  target="_blank" href={"http://" + this.state.selectedPlace.url}> {this.state.selectedPlace.url} </a>
+                <a style={{color: 'blue'}}  target="_blank" href={"" +  this.state.selectedPlace.url}> {this.state.selectedPlace.url} </a>
               </div>
             </InfoWindow>
         </Map>
