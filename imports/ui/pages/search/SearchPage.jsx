@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import GoogleMapsPage from '/imports/ui/component/GoogleMap.jsx';
 import {WithContext as ReactTags} from 'react-tag-input';
+import {Link, browserHistory} from 'react-router';
 
 import location from '@derhuerst/browser-location';
 
@@ -134,6 +135,10 @@ export default class SearchPage extends Component{
     this.clearInput();
   }
 
+returnHome = () => {
+    console.log("back Pushed");
+    browserHistory.push("/");
+  }
 
   clearInput = () => {
     this.refs.city.value = "";
@@ -171,7 +176,7 @@ export default class SearchPage extends Component{
 
       return(
         <div id = "searchDiv">
-          <a href={"/"} className="button"> BACK </a>
+          <button className ="HomeButton" onClick = {this.returnHome}> BACK </button>
         <div className="center-block text-center" style={{marginTop:"2%"}}>
           <div className="searchform cf">
             {/* <input ref={(position) => {this.position = position}} type="text" placeholder="position?"/> */}
