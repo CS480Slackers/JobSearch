@@ -202,7 +202,7 @@ returnHome = () => {
               handleFilterSuggestions={this.positionHandleFilterSuggestions}
             />
           <input className= "city" ref="city" type="text" placeholder="city?" />
-            <input className = "mile" ref="proximity" type="text" placeholder="miles?"/>
+            <input className = "mile" ref="proximity" type="number" placeholder="miles?"/>
             <button onClick={this.handleFormSubmit} id="search" >Search</button>
           </div>
           {this.state.loading ? null : <GoogleMapsPage
