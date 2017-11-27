@@ -51,8 +51,8 @@
 body {
   background: #DCDCDC;
   color: #fff;
-  overflow: hidden;
-  font: 12px/18px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  /*overflow: hidden;*/
+  font:12px/18px 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
 a, a:visited {
