@@ -36,13 +36,14 @@ export const Job = Class.create({
       }
     },
 
-    latitiude: {
-      type: String
-    },
-
-    longitude: {
-      type: String
-    },
+    // latitiude: {
+    //   type: String
+    //   optional: true
+    // },
+    // 
+    // longitude: {
+    //   type: String
+    // },
 
     //location will store our GeoJSON object
     location: {
@@ -84,7 +85,7 @@ export const Job = Class.create({
      /URL will be the job display on OUR website
      /Do not confuse with externalURL
     */
-    jobURL:{
+    url:{
       type:String,
       optional:true
     },

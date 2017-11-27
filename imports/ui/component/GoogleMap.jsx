@@ -57,8 +57,8 @@ render() {
           onClick={self.onMarkerClick}
           name={job.company}
           jobPosition={job.position}
-          description={job.description}
-          position= {{lat:job.location.coordinates[1], lng:job.location.coordinates[0]}} />
+          position= {{lat:job.location.coordinates[1], lng:job.location.coordinates[0]}}
+          url = {job.url}/>
       )
     })
 
@@ -76,11 +76,13 @@ render() {
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
-            <div style={{color: 'black'}}>
-              <h3> <strong>{this.state.selectedPlace.name} </strong></h3>
-              <h5>{this.state.selectedPlace.jobPosition}</h5>
-              <h5>{this.state.selectedPlace.description}</h5>
-              <button onClick={console.log("details is clicked")}>Details</button>
+            <div>
+              <div style={{color: 'black'}}>
+                <h3> <strong>{this.state.selectedPlace.name} </strong></h3>
+                <h5>{this.state.selectedPlace.jobPosition}</h5>
+
+              </div>
+              <a style={{color: 'blue'}}  target="_blank" href={"http://" + this.state.selectedPlace.url}> {this.state.selectedPlace.url} </a>
             </div>
           </InfoWindow>
       </Map>

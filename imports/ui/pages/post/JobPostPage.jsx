@@ -86,8 +86,9 @@ class JobPostPage extends Component{
     //assign job fields
     job.location2 = address;
     job.company = this.name.value;
-    job.latitiude = this.latitiude.value;
-    job.longitude = this.longitude.value;
+    // job.latitiude = this.latitiude.value;
+    // job.longitude = this.longitude.value;
+    job.url = this.url.value;
     job.position = this.position.value;
     job.description = this.jobDescription.value;
 
@@ -108,7 +109,7 @@ class JobPostPage extends Component{
           return Bert.alert('Thank you for your review.', 'success',
                         'fixed-top', 'fa-thumbs-o-up');
         }else {
-          // this.clearInput();
+          
           return Bert.alert('Error. Please Try Again.', 'danger',
                         'fixed-top', 'fa-thumbs-o-down');
         }
@@ -138,8 +139,9 @@ class JobPostPage extends Component{
               handleAddition={this.handleAddition}
               handleFilterSuggestions={this.handleFilterSuggestions}
             />
-            <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LATITUDE"/>
-            <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONGITUDE"/>
+            <input ref={(url) => {this.url = url}} id="url" type="text" placeholder="JOB URL"/>
+            {/* <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LATITUDE"/>
+            <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONGITUDE"/> */}
             <input ref={(addr) => {this.addr = addr}} id="address" type="text" placeholder="ADDRESS"/>
 
             <div>
