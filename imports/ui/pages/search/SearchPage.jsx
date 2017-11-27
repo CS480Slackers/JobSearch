@@ -20,7 +20,9 @@ export default class SearchPage extends Component{
       returnedLocations:[],
       pos_tags: [],
       pos_suggestions: []
+      // pos_suggestions: posList
     }
+    // console.log('allPosition', props.allPosition );
 
     this.positionHandleDelete = this.positionHandleDelete.bind(this);
     this.positionHandleAddition = this.positionHandleAddition.bind(this);
@@ -30,9 +32,6 @@ export default class SearchPage extends Component{
     this.findNearJobLocations = this.findNearJobLocations.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.clearInput = this.clearInput.bind(this);
-
-    this.getLocation = this.getLocation.bind(this);
-    this.showPosition = this.showPosition.bind(this);
 
     this.onChange = (address) => this.setState({ address })
 
@@ -63,19 +62,16 @@ export default class SearchPage extends Component{
   }
 
    componentWillMount(){
-     this.getLocation();
+    //  Set initial location as the user's current location
+     location((err, loc) => {
+         if (err){
+           this.setState({loading:false});
+         }
+         else {
+           this.setState({lat:loc.latitude, lng:loc.longitude, loading: false})
+         }
+     })
    }
-
-   getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.showPosition);
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
-    }
-    showPosition(position) {
-      this.setState({lat:position.coords.latitude, lng:position.coords.longitude, loading: false})
-    }
 
   setLocation(latLng){
     this.setState({lat:latLng.lat, lng:latLng.lng});
@@ -128,6 +124,7 @@ export default class SearchPage extends Component{
   handleFormSubmit = (event) => {
     event.preventDefault()
     let data = {
+      // position: this.position.value,
       city: this.refs.city.value
     }
 
