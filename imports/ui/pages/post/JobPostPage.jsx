@@ -124,40 +124,74 @@ class JobPostPage extends Component{
     return(
 
       <div id="postdiv">
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo&libraries=places"></script>
         <a href={"/"} className="button"> BACK </a>
-        <div id = "PostHeader">Post a Job</div>
+        <div className="post-form">
+          <h1>Post a Job</h1>
+          <div className="contentform">
+        	<div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
+          <div className="leftcontact">
+      			<div className="form-group">
+      			  <p>Company <span>*</span></p>
+      			  <span className="icon-case"><i className="fa fa-home"></i></span>
+      				<input ref={(name) => { this.name = name }} type="text" name="name" id="name" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Société' doit être renseigné."/>
+              <div className="validation"></div>
+      			</div>
 
-        <div id="form" className="topBefore">
-            <input ref={(name) => { this.name = name }} id="name" type="text" placeholder="COMPANY NAME"/>
-            <input ref={(position) => {this.position = position}} id="position" type="text" placeholder="POSITION"/>
-            {/*}<input ref={(location) => {this.location = location}} id="location" type="text" placeholder="LOCATION"/>}*/}
-            <ReactTags
-              id="tags"
-              tags={tags}
-              suggestions={suggestions}
-              placeholder="Add Majors you're interested in hiring."
-              handleDelete={this.handleDelete}
-              autocomplete={true}
-              handleAddition={this.handleAddition}
-              handleFilterSuggestions={this.handleFilterSuggestions}
-            />
-            <input ref={(url) => {this.url = url}} id="url" type="text" placeholder="JOB URL"/>
-            {/* <input ref={(latitiude) => {this.latitiude = latitiude}} id="latitiude" type="number" placeholder="LATITUDE"/>
-            <input ref={(longitude) => {this.longitude = longitude}} id="longitude" type="number" placeholder="LONGITUDE"/> */}
-            <input ref={(addr) => {this.addr = addr}} id="address" type="text" placeholder="ADDRESS"/>
+      			<div className="form-group">
+      			  <p>Company Address <span>*</span></p>
+      			  <span className="icon-case"><i className="fa fa-location-arrow"></i></span>
+      				<input ref={(addr) => {this.addr = addr}} type="text" name="adresse" id="adresse" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Adresse' doit être renseigné."/>
+              <div className="validation"></div>
+      			</div>
 
-            <div>
-              <input ref={(city_ref) => {this.city_ref = city_ref}} id="city" type="text" placeholder="CITY"/>
-              <input ref={(state_ref) => {this.state_ref = state_ref}} id="state" type="text" placeholder="STATE"/>
-              <input ref={(zip_ref) => {this.zip_ref = zip_ref}} id="zip" type="text" placeholder="ZIP"/>
+            <div className="form-group">
+      			  <p>State <span>*</span></p>
+      			  <span className=" icon-case"><i className="fa fa-building-o"></i></span>
+      				<input ref={(state_ref) => {this.state_ref = state_ref}} type="text" name="state" id="state" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."/>
+              <div className="validation"></div>
+      			</div>
+
+            <div className="form-group">
+      			  <p>City <span>*</span></p>
+      			  <span className=" icon-case"><i className="fa fa-building-o"></i></span>
+      				<input ref={(city_ref) => {this.city_ref = city_ref}} type="text" name="ville" id="ville" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."/>
+              <div className="validation"></div>
+      			</div>
+
+      			<div className="form-group">
+      			  <p>Postcode <span>*</span></p>
+      			  <span className="icon-case"><i className="fa fa-map-marker"></i></span>
+      				<input ref={(zip_ref) => {this.zip_ref = zip_ref}} type="text" name="postal" id="postal" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."/>
+              <div className="validation"></div>
+      			</div>
+      	  </div>
+
+        	<div className="rightcontact">
+            <div className="form-group">
+              <p>Position <span>*</span></p>
+              <span className="icon-case"><i className="fa fa-info"></i></span>
+              <input ref={(position) => {this.position = position}} type="text" name="position" id="position" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Fonction' doit être renseigné."/>
+              <div className="validation"></div>
             </div>
 
-            <textarea ref={(jobDescription) => {this.jobDescription = jobDescription}} id="description" type="text" placeholder="DESCRIPTION">
-            </textarea>
-            <button onClick={this.submitJob} id="submit" type="submit">SUBMIT NOW</button>
-        </div>
+      			<div className="form-group">
+      			  <p>Website URL <span>*</span></p>
+      			  <span className="icon-case"><i className="fa fa-info"></i></span>
+              <input ref={(url) => {this.url = url}} type="text" name="url" id="url" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Fonction' doit être renseigné."/>
+              <div className="validation"></div>
+      			</div>
+
+      			<div className="form-group">
+      			  <p>Description <span>*</span></p>
+      			  <span className="icon-case"><i className="fa fa-comments-o"></i></span>
+              <textarea ref={(jobDescription) => {this.jobDescription = jobDescription}} name="Description" rows="14" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Message' doit être renseigné."></textarea>
+              <div className="validation"></div>
+      			</div>
+        	</div>
+    	  </div>
+        <button onClick={this.submitJob} type="submit" id="submit" className="bouton-contact">Send</button>
       </div>
+    </div>
     )
   }
 }
