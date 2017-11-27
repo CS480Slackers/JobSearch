@@ -83,10 +83,11 @@ export default class SearchPage extends Component{
       //TODO IN PROGRESS filter by position
       var filteredByPos = [];
       //filteredyByPos is an array of jobs filtered by position
+      let self = this;
       var filteredByPos = arr.filter( function(job){ //for each job
         var add = false;
-        for(var i = 0; i < this.state.pos_tags.length; i++){
-          if(this.state.pos_tags[i].text.toLowerCase() === job.position.toLowerCase()){
+        for(var i = 0; i < self.state.pos_tags.length; i++){
+          if(self.state.pos_tags[i].text.toLowerCase() === job.position.toLowerCase()){
             add = true;
             console.log("tag = position", job.position);
             break;
@@ -105,7 +106,7 @@ export default class SearchPage extends Component{
     maxDist *= 1000;
     Meteor.call("findNearest", this.state.lat, this.state.lng, maxDist, function(error, result){
       if(result){
-        console.log('output from results');
+        console.log('output from results', self.state.pos_tags.length );
         if(self.state.pos_tags.length != 0){
           //TODO IN PROGRESS filter by position
           var filteredByPos = self.filterByPosition(result);
@@ -114,6 +115,7 @@ export default class SearchPage extends Component{
         else{
           self.setState({returnedLocations: result});
         }
+        self.clearInput();
       }
       if(error){
             console.log("error from finding nearest");
@@ -132,7 +134,6 @@ export default class SearchPage extends Component{
       .then(results => getLatLng(results[0]))
       .then(latLng => this.setLocation(latLng))
       .catch(error => console.error('Error', error))
-    this.clearInput();
   }
 
 returnHome = () => {
@@ -142,27 +143,37 @@ returnHome = () => {
 
   clearInput = () => {
     this.refs.city.value = "";
+    this.setState({pos_tags: []})
+    this.refs.proximity.value = "";
+    this.reAddPositionSuggestion();
+  }
+
+  addPositionSuggestion(){
+    if(addedJob == false){
+      if(this.props.allPosition.length > 0){
+        let positions = []
+        for(i = 0; i < this.props.allPosition.length; i++){
+          console.log('adding', this.props.allPosition[i]);
+          positions.push(this.props.allPosition[i].text);
+        }
+        this.setState({pos_suggestions: positions});
+      }
+      addedJob = true;
+    }
+  }
+
+  reAddPositionSuggestion(){
+    addedJob = false;
+    this.addPositionSuggestion();
   }
 
   render(){
-
-
     if(this.props.loading){
       return <div>Loading</div>
     }
     else{
-      if(addedJob == false){
-        if(this.props.allPosition.length > 0){
-          let positions = []
-          for(i = 0; i < this.props.allPosition.length; i++){
-            console.log('adding', this.props.allPosition[i]);
-            positions.push(this.props.allPosition[i].text);
-          }
-          this.setState({pos_suggestions: positions});
-        }
-        addedJob = true;
-      }
 
+      this.addPositionSuggestion();
       console.log('pos_suggestions',this.state.pos_suggestions);
       const {pos_tags, pos_suggestions} = this.state;
       console.log("state", this.state);
