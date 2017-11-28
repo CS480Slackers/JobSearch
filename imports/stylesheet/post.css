@@ -4,6 +4,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height:100%
   /*background-image: url("https://images.unsplash.com/photo-1494707924465-e1426acb48cb?dpr=1&auto=compress,format&fit=crop&w=1950&h=&q=80&cs=tinysrgb&crop=");
   color: #b3aca7;*/
 }
@@ -175,6 +176,7 @@ i {
   width:100%;
   margin: 0 auto;
   margin-top: 5%;
+  margin-bottom: 100%;
   background-color: #FFFFFF;
   overflow: hidden;
 }
