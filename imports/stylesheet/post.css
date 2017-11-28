@@ -1,3 +1,13 @@
+#postdiv {
+  background: url("https://images.unsplash.com/photo-1494707924465-e1426acb48cb?dpr=1&auto=compress,format&fit=crop&w=1950&h=&q=80&cs=tinysrgb&crop=") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /*background-image: url("https://images.unsplash.com/photo-1494707924465-e1426acb48cb?dpr=1&auto=compress,format&fit=crop&w=1950&h=&q=80&cs=tinysrgb&crop=");
+  color: #b3aca7;*/
+}
+
 body {
   margin: auto;
   background: #eaeaea;
@@ -77,6 +87,7 @@ a {
   height: 130px;
   float: left;
   padding: 0px 15px;
+  color: #000;
 }
 
 .form-group {
@@ -162,7 +173,8 @@ i {
   border-radius: 5px;
   max-width:700px;
   width:100%;
-  margin: 5% auto;
+  margin: 0 auto;
+  margin-top: 5%;
   background-color: #FFFFFF;
   overflow: hidden;
 }

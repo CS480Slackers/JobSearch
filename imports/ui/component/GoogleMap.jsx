@@ -14,6 +14,11 @@ export class GoogleMapsPage extends Component {
     this.onMapClicked = this.onMapClicked.bind(this);
   }
 
+  componentDidMount(){
+    // document.getElementById("map").childNodes[0]
+    $("#map").children().css({height:"85%"});
+  }
+
   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
@@ -65,28 +70,31 @@ render() {
 
 
     return (
-      <Map
-        clickableIcons={false}
-        google={this.props.google}
-        center={{lat:lat, lng:lng}}
-        zoom={15}
-        style={style}
-        onClick= {this.onMapClicked}
-        >
-        {jobList}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
-            <div>
-              <div style={{color: 'black'}}>
-                <h3> <strong>{this.state.selectedPlace.name} </strong></h3>
-                <h5>{this.state.selectedPlace.jobPosition}</h5>
+      <div id="map">
+        <Map
+          clickableIcons={false}
+          google={this.props.google}
+          center={{lat:lat, lng:lng}}
+          zoom={15}
+          style={style}
+          onClick= {this.onMapClicked}
+          >
+          {jobList}
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}>
+              <div>
+                <div style={{color: 'black'}}>
+                  <h3> <strong>{this.state.selectedPlace.name} </strong></h3>
+                  <h5>{this.state.selectedPlace.jobPosition}</h5>
 
+                </div>
+                <a style={{color: 'blue'}}  target="_blank" href={"" +  this.state.selectedPlace.url}> {this.state.selectedPlace.url} </a>
               </div>
-              <a style={{color: 'blue'}}  target="_blank" href={"http://" + this.state.selectedPlace.url}> {this.state.selectedPlace.url} </a>
-            </div>
-          </InfoWindow>
-      </Map>
+            </InfoWindow>
+        </Map>
+      </div>
+
 
     );
   }
